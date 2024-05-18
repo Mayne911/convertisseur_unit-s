@@ -1,3 +1,4 @@
+import customtkinter as ctk
 
 #Définitions des fonctions 
 def cm_to_inches(cm):
@@ -5,6 +6,38 @@ def cm_to_inches(cm):
 
 def inches_to_cm(inches):
     return inches * 2.54
+
+def button_callback():
+    print("Button clicked")
+
+
+#Création de la fenêtre
+conv = ctk.CTk()
+conv.title("Convertisseur d'unités")
+conv.geometry("400x400")
+conv.grid_columnconfigure(0, weight=1)
+conv.grid_columnconfigure((0, 1), weight=1)
+
+cm_inches = ctk.CTkCheckBox(conv, text="cm en pouces")
+cm_inches.grid(row=1, column=0, padx=10, pady=(20, 10), sticky="w")
+
+inches_cm = ctk.CTkCheckBox(conv, text="pouces en cm")
+inches_cm.grid(row=1, column=1, padx=10, pady=(20, 10), sticky="e")
+
+valeur_utilisateur = ctk.CTkEntry(conv)
+valeur_utilisateur.grid(row=0, column=0, padx=10, pady=10, sticky="ew", columnspan=2)
+val = valeur_utilisateur.get()
+
+affichage = ctk.CTkLabel(conv, text="Résultat")
+affichage.grid(row=3, column=0, padx=10, pady=10, sticky="ew", columnspan=2)
+
+button = ctk.CTkButton(conv, text="Convertir", command=button_callback)
+button.grid(row=2, column=0, padx=10, pady=10, sticky="ew", columnspan=2)
+
+
+
+conv.mainloop()
+
 
 #Choix utilisateur
 convert = input("souahiitez-vous convertir des cm en pouces ou des pouces en cm ? : ")
@@ -34,8 +67,5 @@ elif plsrs_conv == "Oui":
         for i in range(nb_longueurs):
             liste_longueurs.append(float(input(f"Valeur {i + 1} : ")))
             print(f"{liste_longueurs[i]} pouces = {inches_to_cm(liste_longueurs[i])} cm")
-
-
-        
 
 
