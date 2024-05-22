@@ -1,77 +1,60 @@
 import customtkinter as ctk
 
 #Définitions des fonctions 
-def cm_to_inches(cm):
-    return cm * 0.394
-
-def inches_to_cm(inches):
-    return inches * 2.54
-
-def m_to_miles(m):
-    return m * 0.000621371
-
-def miles_to_m(miles):
-    return miles * 1609.34
-
-def kg_to_lbs(kg):
-    return kg * 2.20462
-
-def lbs_to_kg(lbs):
-    return lbs * 0.453592
-
-def cm_to_feet(cm):
-    return cm * 0.0328084
-
-def feet_to_cm(feet):
-    return feet * 30.48
-
-def cm_to_yards(cm):
-    return cm * 0.0109361
-
-def yards_to_cm(yards):
-    return yards * 91.44
+def conversion(mesure, valeur):
+    valeur = valeur * mesure
+    return f"{valeur:.2f}"
 
 def button_callback():
-    print("Button clicked")
     if radio_var_dist.get() == 1:
-        cm = float(var.get())
-        affichage.configure(text=f"{cm} cm = {cm_to_inches(cm)} pouces")
+        valeur = float(var.get())
+        mesure = 0.393701
+        affichage.configure(text=f"{valeur} cm = {conversion(mesure, valeur)} inches")
     
     elif radio_var_dist.get() == 2:
-        inches = float(var.get())
-        affichage.configure(text=f"{inches} pouces = {inches_to_cm(inches)} cm")
-    
+        valeur = float(var.get())
+        mesure = 2.54
+        affichage.configure(text=f"{valeur} pouces = {conversion(mesure,valeur)} cm")
+
     elif radio_var_dist.get() == 3:
-        m = float(var.get())
-        affichage.configure(text=f"{m} m = {m_to_miles(m)} miles")
+        valeur = float(var.get())
+        mesure = 0.000621371
+        affichage.configure(text=f"{valeur} m = {conversion(mesure, valeur)} miles")
     
     elif radio_var_dist.get() == 4:
-        miles = float(var.get())
-        affichage.configure(text=f"{miles} miles = {miles_to_m(miles)} m")
+        valeur = float(var.get())
+        mesure = 1609.34
+        affichage.configure(text=f"{valeur} miles = {conversion(mesure, valeur)} m")
 
     elif radio_var_weight.get() == 1:
-        kg = float(var.get())
-        affichage.configure(text=f"{kg} kg = {kg_to_lbs(kg)} lbs")
+        valeur = float(var.get())
+        mesure = 2.20462
+        affichage.configure(text=f"{valeur} kg = {conversion(mesure, valeur)} lbs")
     
     elif radio_var_weight.get() == 2:
-        lbs = float(var.get())
-        affichage.configure(text=f"{lbs} lbs = {lbs_to_kg(lbs)} kg")
+        valeur = float(var.get())
+        mesure = 0.453592
+        affichage.configure(text=f"{valeur} lbs = {conversion(mesure, valeur)} kg")
     
     elif radio_var_dist.get() == 5:
-        cm = float(var.get())
-        affichage.configure(text=f"{cm} cm = {cm_to_feet(cm)} feet")
+        valeur = float(var.get())
+        mesure = 0.0328084
+        affichage.configure(text=f"{valeur} cm = {conversion(mesure, valeur)} feet")
     
     elif radio_var_dist.get() == 6:
-        feet = float(var.get())
-        affichage.configure(text=f"{feet} feet = {feet_to_cm(feet)} cm")
+        valeur = float(var.get())
+        mesure = 30.48
+        affichage.configure(text=f"{valeur} feet = {conversion(mesure, valeur)} cm")
     
     elif radio_var_dist.get() == 7:
-        cm = float(var.get())
-        affichage.configure(text=f"{cm} cm = {cm_to_yards(cm)} yards")
+        valeur = float(var.get())
+        mesure = 0.0109361
+        affichage.configure(text=f"{valeur} cm = {conversion(mesure, valeur)} yards")
     
     elif radio_var_dist.get() == 8:
-        yards = float(var.get())
-        affichage.configure(text=f"{yards} yards = {yards_to_cm(yards)} cm") 
+        valeur = float(var.get())
+        mesure = 91.44
+        affichage.configure(text=f"{valeur} yards = {conversion(mesure, valeur)} cm") 
 
 def display_dist():
     cm_inches.grid()
@@ -110,6 +93,7 @@ conv.grid_columnconfigure((0, 1), weight=1)
 radio_var_choix = ctk.IntVar()
 radio_var_dist = ctk.IntVar()
 radio_var_weight = ctk.IntVar()
+
 
 choix_dist = ctk.CTkRadioButton(conv, text="Distance", variable=radio_var_choix, value=1, command=display_dist)
 choix_dist.grid(row=1, column=0, padx=10, pady=10, sticky="ew")
@@ -151,8 +135,8 @@ lbs_kg.grid(row=6, column=1, padx=10, pady=10, sticky="ew")
 var = ctk.CTkEntry(conv)
 var.grid(row=0, column=0, padx=10, pady=10, sticky="ew", columnspan=2)
 
-#Print result
-affichage = ctk.CTkLabel(conv, text="Résultat")
+# Print result
+affichage = ctk.CTkLabel(conv, text="Résultat", font=("Arial", 12), bg_color="white", fg_color="black")
 affichage.grid(row=8, column=0, padx=10, pady=10, sticky="ew", columnspan=2)
 
 
@@ -171,6 +155,8 @@ cm_yards.grid_remove()
 yards_cm.grid_remove()
 kg_lbs.grid_remove()
 lbs_kg.grid_remove()
+
+valeur = 0
 
 
 conv.mainloop()
