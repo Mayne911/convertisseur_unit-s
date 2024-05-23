@@ -10,12 +10,12 @@ def button_callback():
         valeur = float(var.get())
         mesure = 0.393701
         affichage.configure(text=f"{valeur} cm = {conversion(mesure, valeur)} inches")
-    
+        
     elif radio_var_dist.get() == 2:
         valeur = float(var.get())
         mesure = 2.54
         affichage.configure(text=f"{valeur} pouces = {conversion(mesure,valeur)} cm")
-
+        
     elif radio_var_dist.get() == 3:
         valeur = float(var.get())
         mesure = 0.000621371
@@ -67,7 +67,10 @@ def display_dist():
     yards_cm.grid()
     radio_var_weight.set(0)
     kg_lbs.grid_remove()
-    lbs_kg.grid_remove()   
+    lbs_kg.grid_remove()
+    chg_color = "green"
+    choix_dist.configure(text_color=chg_color)
+    choix_weight.configure(text_color="yellow")   
 
 def display_weight():
     cm_inches.grid_remove()
@@ -81,6 +84,13 @@ def display_weight():
     radio_var_dist.set(0)
     kg_lbs.grid()
     lbs_kg.grid()
+    chg_color = "green"
+    choix_weight.configure(text_color=chg_color)
+    choix_dist.configure(text_color="yellow")
+
+
+
+
 
 #Création de la fenêtre
 conv = ctk.CTk()
@@ -94,13 +104,38 @@ radio_var_choix = ctk.IntVar()
 radio_var_dist = ctk.IntVar()
 radio_var_weight = ctk.IntVar()
 
-
-choix_dist = ctk.CTkRadioButton(conv, text="Distance", variable=radio_var_choix, value=1, command=display_dist)
+#Groupe choix
+choix_dist = ctk.CTkRadioButton(conv, text="Distance", variable=radio_var_choix, value=1, command=display_dist,
+                                radiobutton_width=30,
+                                radiobutton_height=30,
+                                corner_radius=30,
+                                border_width_unchecked = 2,
+                                border_width_checked =8,
+                                border_color="yellow",
+                                hover_color="blue",
+                                fg_color="green",
+                                text_color="yellow",
+                                font=("Arial", 18),
+                                state="normal",
+                                )
 choix_dist.grid(row=1, column=0, padx=10, pady=10, sticky="ew")
+                
 
-choix_weight = ctk.CTkRadioButton(conv, text="Poids", variable=radio_var_choix, value=2, command=display_weight)
+choix_weight = ctk.CTkRadioButton(conv, text="Poids", variable=radio_var_choix, value=2, command=display_weight,
+                                radiobutton_width=30,
+                                radiobutton_height=30,
+                                corner_radius=20,
+                                border_width_unchecked = 2,
+                                border_width_checked =8,
+                                border_color="yellow",
+                                hover_color="blue",
+                                fg_color="green",
+                                text_color="yellow",
+                                font=("Arial", 18),
+                                )
 choix_weight.grid(row=1, column=1, padx=10, pady=10, sticky="ew")
 
+#groupe distance
 cm_inches = ctk.CTkRadioButton(conv, text="cm en pouces", variable=radio_var_dist, value=1)
 cm_inches.grid(row=2, column=0, padx=10, pady=10, sticky="ew")
 
@@ -125,6 +160,7 @@ cm_yards.grid(row=5, column=0, padx=10, pady=10, sticky="ew")
 yards_cm = ctk.CTkRadioButton(conv, text="yards en cm", variable=radio_var_dist, value=8)
 yards_cm.grid(row=5, column=1, padx=10, pady=10, sticky="ew")
 
+#groupe poids
 kg_lbs = ctk.CTkRadioButton(conv, text="kg en lbs", variable=radio_var_weight, value=1)
 kg_lbs.grid(row=6, column=0, padx=10, pady=10, sticky="ew")
 
@@ -156,7 +192,7 @@ yards_cm.grid_remove()
 kg_lbs.grid_remove()
 lbs_kg.grid_remove()
 
-valeur = 0
+
 
 
 conv.mainloop()
