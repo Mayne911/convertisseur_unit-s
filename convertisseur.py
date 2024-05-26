@@ -88,10 +88,6 @@ def display_weight():
     choix_weight.configure(text_color=chg_color)
     choix_dist.configure(text_color="yellow")
 
-
-
-
-
 #Création de la fenêtre
 conv = ctk.CTk()
 conv.title("Convertisseur d'unités")
@@ -167,16 +163,15 @@ kg_lbs.grid(row=6, column=0, padx=10, pady=10, sticky="ew")
 lbs_kg = ctk.CTkRadioButton(conv, text="lbs en kg", variable=radio_var_weight, value=2)
 lbs_kg.grid(row=6, column=1, padx=10, pady=10, sticky="ew")
 
-#User entry
+#Entrée utilisateur
 var = ctk.CTkEntry(conv)
 var.grid(row=0, column=0, padx=10, pady=10, sticky="ew", columnspan=2)
 
-# Print result
+#Affichage du résultat
 affichage = ctk.CTkLabel(conv, text="Résultat", font=("Arial", 12), bg_color="white", fg_color="black")
 affichage.grid(row=8, column=0, padx=10, pady=10, sticky="ew", columnspan=2)
 
-
-#Button
+#Bouton de conversion
 button = ctk.CTkButton(conv, text="Convertir", command=button_callback)
 button.grid(row=7, column=0, padx=10, pady=10, sticky="ew", columnspan=2)
 
@@ -191,8 +186,5 @@ cm_yards.grid_remove()
 yards_cm.grid_remove()
 kg_lbs.grid_remove()
 lbs_kg.grid_remove()
-
-
-
 
 conv.mainloop()
